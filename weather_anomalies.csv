@@ -1,0 +1,6 @@
+city,latitude,longitude,current_temp_c,baseline_mean_c,baseline_std,z_score,is_anomaly
+Coimbatore,11.0168,76.9558,27.0,25.94,2.05,0.52,False
+London,51.5074,-0.1278,20.9,11.66,5.74,1.61,False
+New York,40.7128,-74.006,20.4,12.61,9.54,0.82,False
+Sydney,-33.8688,151.2093,15.6,17.61,4.38,-0.46,False
+Tokyo,35.6762,139.6503,28.9,15.89,8.45,1.54,False
