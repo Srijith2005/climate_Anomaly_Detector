@@ -1,5 +1,5 @@
 import os
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 import requests
 import pandas as pd
 
@@ -44,69 +44,54 @@ DISTRICTS = {
     "Virudhunagar": {"lat": 9.5680, "lon": 77.9624}
 }
 
-def get_historical_baseline(lat, lon):
-    end_date = (datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d")
-    start_date = (datetime.now() - timedelta(days=3650)).strftime("%Y-%m-%d")
-    
-    url = "https://archive-api.open-meteo.com/v1/archive"
+def fetch_weather_data(district_name, coords):
+    url = "https://api.open-meteo.com/v1/forecast"
     params = {
-        "latitude": lat,
-        "longitude": lon,
-        "start_date": start_date,
-        "end_date": end_date,
-        "daily": "temperature_2m_mean",
-        "timezone": "auto"
+        "latitude": coords["lat"],
+        "longitude": coords["lon"],
+        "current": [
+            "temperature_2m",
+            "relative_humidity_2m",
+            "apparent_temperature",
+            "precipitation",
+            "wind_speed_10m",
+        ],
+        "timezone": "auto",
     }
-    
     response = requests.get(url, params=params)
     if response.status_code == 200:
-        daily_temps = response.json()["daily"]["temperature_2m_mean"]
-        s = pd.Series(daily_temps).dropna()
-        return round(s.mean(), 2), round(s.std(), 2)
-    return None, None
+        data = response.json()["current"]
+        return {
+            "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
+            "city": district_name,
+            "latitude": coords["lat"],
+            "longitude": coords["lon"],
+            "temp_c": data["temperature_2m"],
+            "feels_like_c": data["apparent_temperature"],
+            "humidity_pct": data["relative_humidity_2m"],
+            "precipitation_mm": data["precipitation"],
+            "wind_speed_kmh": data["wind_speed_10m"],
+        }
+    else:
+        print(f"Failed to fetch data for {district_name}")
+        return None 
 
 def main():
-    if not os.path.exists("live_weather_log.csv"):
-        print("Error: live_weather_log.csv not found!")
-        return
-
-    live_df = pd.read_csv("live_weather_log.csv")
-    
-    latest_df = live_df.sort_values("timestamp").groupby("city").last().reset_index()
-    
-    results = []
-    print("\n--- Computing 10-Year Baselines & Z-Scores for Tamil Nadu Districts ---")
-    
-    for _, row in latest_df.iterrows():
-        city = row["city"]
-        current_temp = row["temp_c"]
-        lat = row["latitude"]
-        lon = row["longitude"]
-        
-        print(f"Processing {city}...")
-        mean_temp, std_temp = get_historical_baseline(lat, lon)
-        
-        if mean_temp is not None and std_temp is not None and std_temp > 0:
-            z_score = round((current_temp - mean_temp) / std_temp, 2)
-            is_anomaly = abs(z_score) >= 2.0
-        else:
-            z_score = 0.0
-            is_anomaly = False
+    records = []
+    for district_name, coords in DISTRICTS.items():
+        data = fetch_weather_data(district_name, coords)
+        if data:
+            records.append(data)
             
-        results.append({
-            "city": city,
-            "latitude": lat,
-            "longitude": lon,
-            "current_temp_c": current_temp,
-            "baseline_mean_c": mean_temp,
-            "baseline_std": std_temp,
-            "z_score": z_score,
-            "is_anomaly": is_anomaly
-        })
-        
-    out_df = pd.DataFrame(results)
-    out_df.to_csv("weather_anomalies.csv", index=False)
-    print("\nSuccessfully updated 'weather_anomalies.csv' with all 38 districts!")
+    df = pd.DataFrame(records)
+
+    print("\n--- Live Tamil Nadu Weather Data Extracted ---")
+    print(df.to_string(index=False))
+
+    file_path = "live_weather_log.csv"
+    file_exists = os.path.exists(file_path)
+    df.to_csv(file_path, mode="a", header=not file_exists, index=False)
+    print(f"\nSuccessfully saved 38 district metrics to '{file_path}'.")
 
 if __name__ == "__main__":
     main()
