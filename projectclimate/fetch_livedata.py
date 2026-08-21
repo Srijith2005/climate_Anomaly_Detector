@@ -44,54 +44,50 @@ DISTRICTS = {
     "Virudhunagar": {"lat": 9.5680, "lon": 77.9624}
 }
 
-def fetch_weather_data(district_name, coords):
+def main():
+    names = list(DISTRICTS.keys())
+    lats = [str(DISTRICTS[k]["lat"]) for k in names]
+    lons = [str(DISTRICTS[k]["lon"]) for k in names]
+
+    print("Fetching live data for 38 districts...", flush=True)
     url = "https://api.open-meteo.com/v1/forecast"
     params = {
-        "latitude": coords["lat"],
-        "longitude": coords["lon"],
-        "current": [
-            "temperature_2m",
-            "relative_humidity_2m",
-            "apparent_temperature",
-            "precipitation",
-            "wind_speed_10m",
-        ],
+        "latitude": ",".join(lats),
+        "longitude": ",".join(lons),
+        "current": "temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m",
         "timezone": "auto",
     }
-    response = requests.get(url, params=params)
-    if response.status_code == 200:
-        data = response.json()["current"]
-        return {
-            "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
-            "city": district_name,
-            "latitude": coords["lat"],
-            "longitude": coords["lon"],
-            "temp_c": data["temperature_2m"],
-            "feels_like_c": data["apparent_temperature"],
-            "humidity_pct": data["relative_humidity_2m"],
-            "precipitation_mm": data["precipitation"],
-            "wind_speed_kmh": data["wind_speed_10m"],
-        }
-    else:
-        print(f"Failed to fetch data for {district_name}")
-        return None 
 
-def main():
+    try:
+        response = requests.get(url, params=params, timeout=15)
+        response.raise_for_status()
+        results = response.json()
+    except Exception as e:
+        print(f"Batch fetch failed: {e}", flush=True)
+        return
+
+    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     records = []
-    for district_name, coords in DISTRICTS.items():
-        data = fetch_weather_data(district_name, coords)
-        if data:
-            records.append(data)
-            
+    
+    for name, item in zip(names, results):
+        cur = item.get("current", {})
+        records.append({
+            "timestamp": now_utc,
+            "city": name,
+            "latitude": DISTRICTS[name]["lat"],
+            "longitude": DISTRICTS[name]["lon"],
+            "temp_c": cur.get("temperature_2m"),
+            "feels_like_c": cur.get("apparent_temperature"),
+            "humidity_pct": cur.get("relative_humidity_2m"),
+            "precipitation_mm": cur.get("precipitation"),
+            "wind_speed_kmh": cur.get("wind_speed_10m"),
+        })
+
     df = pd.DataFrame(records)
-
-    print("\n--- Live Tamil Nadu Weather Data Extracted ---")
-    print(df.to_string(index=False))
-
     file_path = "live_weather_log.csv"
     file_exists = os.path.exists(file_path)
     df.to_csv(file_path, mode="a", header=not file_exists, index=False)
-    print(f"\nSuccessfully saved 38 district metrics to '{file_path}'.")
+    print(f"Successfully saved {len(records)} rows to {file_path}", flush=True)
 
 if __name__ == "__main__":
     main()
