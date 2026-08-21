@@ -81,19 +81,14 @@ def fetch_live_batch():
     return pd.DataFrame(records)
 
 def detect_anomalies(df):
-    # Historical district baseline references (mean and standard deviation)
     mean_temp = df["temp_c"].mean()
     std_temp = df["temp_c"].std() if df["temp_c"].std() != 0 else 1.0
 
-    # Calculate Z-Score
     df["temp_zscore"] = ((df["temp_c"] - mean_temp) / std_temp).round(2)
-
-    # Anomaly condition flags
     df["is_heat_anomaly"] = df["temp_zscore"] >= 1.5
     df["is_cold_anomaly"] = df["temp_zscore"] <= -1.5
     df["is_rain_anomaly"] = df["precipitation_mm"] > 20.0
     
-    # Combined alert status for Power BI display
     conditions = [
         df["is_heat_anomaly"],
         df["is_cold_anomaly"],
@@ -105,19 +100,17 @@ def detect_anomalies(df):
     return df
 
 def main():
-    print("Running anomaly detection pipeline...", flush=True)
+    print("Running batch anomaly detection pipeline...", flush=True)
     df_live = fetch_live_batch()
     
-    # Also log raw live reading
     raw_path = "live_weather_log.csv"
     df_live.to_csv(raw_path, mode="a", header=not os.path.exists(raw_path), index=False)
     
-    # Compute anomalies and save primary dataset for Power BI
     df_anomalies = detect_anomalies(df_live)
     out_path = "weather_anomalies.csv"
     df_anomalies.to_csv(out_path, index=False)
     
-    print(f"Generated {out_path} with {len(df_anomalies)} records.", flush=True)
+    print(f"Successfully generated {out_path} with {len(df_anomalies)} records.", flush=True)
 
 if __name__ == "__main__":
     main()
