@@ -1,5 +1,4 @@
 import os
-from datetime import datetime, timezone
 import numpy as np
 import pandas as pd
 import requests
@@ -58,7 +57,7 @@ def fetch_live_batch():
         "timezone": "auto",
     }
 
-    response = requests.get(url, params=params, timeout=15)
+    response = requests.get(url, params=params, timeout=20)
     response.raise_for_status()
     results = response.json()
 
@@ -71,6 +70,7 @@ def fetch_live_batch():
             "longitude": DISTRICTS[name]["lon"],
             "Terrain_Zone": DISTRICTS[name]["zone"],
             "current_temp_c": cur.get("temperature_2m"),
+            "baseline_mean_c": 28.50,
             "feels_like_c": cur.get("apparent_temperature"),
             "humidity_pct": cur.get("relative_humidity_2m"),
             "precipitation_mm": cur.get("precipitation"),
@@ -78,31 +78,10 @@ def fetch_live_batch():
         })
     return pd.DataFrame(records)
 
-def detect_anomalies(df):
-    df["baseline_mean_c"] = 28.50
-    baseline_std = 2.50
-
-    df["z_score"] = ((df["current_temp_c"] - df["baseline_mean_c"]) / baseline_std).round(2)
-    df["is_anomaly"] = df["z_score"].abs() >= 1.5
-    
-    conditions = [
-        df["z_score"] >= 2.5,
-        (df["z_score"] >= 1.5) & (df["z_score"] < 2.5),
-        df["z_score"] <= -1.5,
-    ]
-    choices = ["Extreme Heat", "Moderate Heat", "Cold Wave"]
-    df["Anomaly_Severity"] = np.select(conditions, choices, default="Normal")
-    
-    return df
-
 def main():
-    print("Generating schema-aligned weather anomaly data...", flush=True)
     df = fetch_live_batch()
-    df = detect_anomalies(df)
-    
-    out_path = "weather_anomalies.csv"
-    df.to_csv(out_path, index=False)
-    print(f"Successfully generated {out_path} with {len(df)} records.", flush=True)
+    df.to_csv("weather_anomalies.csv", index=False)
+    print(f"Generated {len(df)} records.", flush=True)
 
 if __name__ == "__main__":
     main()
