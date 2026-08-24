@@ -44,7 +44,7 @@ DISTRICTS = {
     "Virudhunagar": {"lat": 9.5680, "lon": 77.9624, "zone": "South / Central TN"}
 }
 
-def fetch_live_batch():
+def fetch_live_data():
     names = list(DISTRICTS.keys())
     lats = [str(DISTRICTS[k]["lat"]) for k in names]
     lons = [str(DISTRICTS[k]["lon"]) for k in names]
@@ -64,24 +64,38 @@ def fetch_live_batch():
     records = []
     for name, item in zip(names, results):
         cur = item.get("current", {})
+        temp = cur.get("temperature_2m", 28.5)
+        baseline = 28.50
+        std = 2.50
+        z = round((temp - baseline) / std, 2)
+        
+        if z >= 2.5:
+            severity = "Extreme Heat"
+        elif z >= 1.5:
+            severity = "Moderate Heat"
+        elif z <= -1.5:
+            severity = "Cold Wave"
+        else:
+            severity = "Normal"
+
         records.append({
             "city": name,
             "latitude": DISTRICTS[name]["lat"],
             "longitude": DISTRICTS[name]["lon"],
             "Terrain_Zone": DISTRICTS[name]["zone"],
-            "current_temp_c": cur.get("temperature_2m"),
-            "baseline_mean_c": 28.50,
+            "current_temp_c": temp,
+            "baseline_mean_c": baseline,
+            "z_score": z,
+            "is_anomaly": abs(z) >= 1.5,
+            "Anomaly_Severity": severity,
             "feels_like_c": cur.get("apparent_temperature"),
             "humidity_pct": cur.get("relative_humidity_2m"),
             "precipitation_mm": cur.get("precipitation"),
-            "wind_speed_kmh": cur.get("wind_speed_10m"),
+            "wind_speed_kmh": cur.get("wind_speed_10m")
         })
     return pd.DataFrame(records)
 
-def main():
-    df = fetch_live_batch()
-    df.to_csv("weather_anomalies.csv", index=False)
-    print(f"Generated {len(df)} records.", flush=True)
-
 if __name__ == "__main__":
-    main()
+    df = fetch_live_data()
+    df.to_csv("weather_anomalies.csv", index=False)
+    print(f"Successfully wrote {len(df)} districts to weather_anomalies.csv")
