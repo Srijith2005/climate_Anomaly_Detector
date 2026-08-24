@@ -1,7 +1,8 @@
 import os
-from datetime import datetime, timedelta
-import requests
+from datetime import datetime, timezone
+import numpy as np
 import pandas as pd
+import requests
 
 DISTRICTS = {
     "Ariyalur": {"lat": 11.1401, "lon": 79.0786},
@@ -44,69 +45,72 @@ DISTRICTS = {
     "Virudhunagar": {"lat": 9.5680, "lon": 77.9624}
 }
 
-def get_historical_baseline(lat, lon):
-    end_date = (datetime.now() - timedelta(days=5)).strftime("%Y-%m-%d")
-    start_date = (datetime.now() - timedelta(days=3650)).strftime("%Y-%m-%d")
-    
-    url = "https://archive-api.open-meteo.com/v1/archive"
+def fetch_live_batch():
+    names = list(DISTRICTS.keys())
+    lats = [str(DISTRICTS[k]["lat"]) for k in names]
+    lons = [str(DISTRICTS[k]["lon"]) for k in names]
+
+    url = "https://api.open-meteo.com/v1/forecast"
     params = {
-        "latitude": lat,
-        "longitude": lon,
-        "start_date": start_date,
-        "end_date": end_date,
-        "daily": "temperature_2m_mean",
-        "timezone": "auto"
+        "latitude": ",".join(lats),
+        "longitude": ",".join(lons),
+        "current": "temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,wind_speed_10m",
+        "timezone": "auto",
     }
+
+    response = requests.get(url, params=params, timeout=15)
+    response.raise_for_status()
+    results = response.json()
+
+    now_utc = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+    records = []
     
-    response = requests.get(url, params=params)
-    if response.status_code == 200:
-        daily_temps = response.json()["daily"]["temperature_2m_mean"]
-        s = pd.Series(daily_temps).dropna()
-        return round(s.mean(), 2), round(s.std(), 2)
-    return None, None
+    for name, item in zip(names, results):
+        cur = item.get("current", {})
+        records.append({
+            "timestamp": now_utc,
+            "city": name,
+            "latitude": DISTRICTS[name]["lat"],
+            "longitude": DISTRICTS[name]["lon"],
+            "temp_c": cur.get("temperature_2m"),
+            "feels_like_c": cur.get("apparent_temperature"),
+            "humidity_pct": cur.get("relative_humidity_2m"),
+            "precipitation_mm": cur.get("precipitation"),
+            "wind_speed_kmh": cur.get("wind_speed_10m"),
+        })
+    return pd.DataFrame(records)
+
+def detect_anomalies(df):
+    mean_temp = df["temp_c"].mean()
+    std_temp = df["temp_c"].std() if df["temp_c"].std() != 0 else 1.0
+
+    df["temp_zscore"] = ((df["temp_c"] - mean_temp) / std_temp).round(2)
+    df["is_heat_anomaly"] = df["temp_zscore"] >= 1.5
+    df["is_cold_anomaly"] = df["temp_zscore"] <= -1.5
+    df["is_rain_anomaly"] = df["precipitation_mm"] > 20.0
+    
+    conditions = [
+        df["is_heat_anomaly"],
+        df["is_cold_anomaly"],
+        df["is_rain_anomaly"]
+    ]
+    choices = ["Heat Alert", "Cold Wave", "Heavy Rain"]
+    df["anomaly_status"] = np.select(conditions, choices, default="Normal")
+    
+    return df
 
 def main():
-    if not os.path.exists("live_weather_log.csv"):
-        print("Error: live_weather_log.csv not found!")
-        return
-
-    live_df = pd.read_csv("live_weather_log.csv")
+    print("Running batch anomaly detection pipeline...", flush=True)
+    df_live = fetch_live_batch()
     
-    latest_df = live_df.sort_values("timestamp").groupby("city").last().reset_index()
+    raw_path = "live_weather_log.csv"
+    df_live.to_csv(raw_path, mode="a", header=not os.path.exists(raw_path), index=False)
     
-    results = []
-    print("\n--- Computing 10-Year Baselines & Z-Scores for Tamil Nadu Districts ---")
+    df_anomalies = detect_anomalies(df_live)
+    out_path = "weather_anomalies.csv"
+    df_anomalies.to_csv(out_path, index=False)
     
-    for _, row in latest_df.iterrows():
-        city = row["city"]
-        current_temp = row["temp_c"]
-        lat = row["latitude"]
-        lon = row["longitude"]
-        
-        print(f"Processing {city}...")
-        mean_temp, std_temp = get_historical_baseline(lat, lon)
-        
-        if mean_temp is not None and std_temp is not None and std_temp > 0:
-            z_score = round((current_temp - mean_temp) / std_temp, 2)
-            is_anomaly = abs(z_score) >= 2.0
-        else:
-            z_score = 0.0
-            is_anomaly = False
-            
-        results.append({
-            "city": city,
-            "latitude": lat,
-            "longitude": lon,
-            "current_temp_c": current_temp,
-            "baseline_mean_c": mean_temp,
-            "baseline_std": std_temp,
-            "z_score": z_score,
-            "is_anomaly": is_anomaly
-        })
-        
-    out_df = pd.DataFrame(results)
-    out_df.to_csv("weather_anomalies.csv", index=False)
-    print("\nSuccessfully updated 'weather_anomalies.csv' with all 38 districts!")
+    print(f"Successfully generated {out_path} with {len(df_anomalies)} records.", flush=True)
 
 if __name__ == "__main__":
     main()
