@@ -1,39 +1,39 @@
-timestamp,city,latitude,longitude,temp_c,feels_like_c,humidity_pct,precipitation_mm,wind_speed_kmh,temp_zscore,is_heat_anomaly,is_cold_anomaly,is_rain_anomaly,anomaly_status
-2026-08-21 15:01:05,Ariyalur,11.1401,79.0786,28.8,31.4,71,0.0,20.6,0.42,False,False,False,Normal
-2026-08-21 15:01:05,Chengalpattu,12.6825,79.9822,26.0,30.9,94,0.3,11.6,-0.57,False,False,False,Normal
-2026-08-21 15:01:05,Chennai,13.0827,80.2707,28.8,33.7,79,0.0,10.8,0.42,False,False,False,Normal
-2026-08-21 15:01:05,Coimbatore,11.0168,76.9558,23.9,25.7,87,0.0,19.6,-1.32,False,False,False,Normal
-2026-08-21 15:01:05,Cuddalore,11.748,79.7714,26.7,30.9,92,0.5,18.5,-0.32,False,False,False,Normal
-2026-08-21 15:01:05,Dharmapuri,12.1211,78.1582,28.8,30.2,56,0.0,13.5,0.42,False,False,False,Normal
-2026-08-21 15:01:05,Dindigul,10.3673,77.9803,30.9,32.3,45,0.0,8.8,1.17,False,False,False,Normal
-2026-08-21 15:01:05,Erode,11.341,77.7172,28.0,29.8,66,0.0,17.1,0.14,False,False,False,Normal
-2026-08-21 15:01:05,Kallakurichi,11.7384,78.9639,24.8,27.1,91,0.6,22.2,-1.0,False,False,False,Normal
-2026-08-21 15:01:05,Kanchipuram,12.8342,79.7036,26.0,30.6,92,0.0,12.7,-0.57,False,False,False,Normal
-2026-08-21 15:01:05,Kanniyakumari,8.0883,77.5385,27.5,28.3,74,0.0,29.2,-0.04,False,False,False,Normal
-2026-08-21 15:01:05,Karur,10.9601,78.0766,27.9,27.9,65,0.0,29.2,0.1,False,False,False,Normal
-2026-08-21 15:01:05,Krishnagiri,12.5266,78.2146,27.8,28.4,56,0.0,16.4,0.07,False,False,False,Normal
-2026-08-21 15:01:05,Madurai,9.9252,78.1198,30.5,33.2,52,0.0,6.6,1.03,False,False,False,Normal
-2026-08-21 15:01:05,Mayiladuthurai,11.1018,79.6521,28.5,31.0,73,0.0,21.3,0.32,False,False,False,Normal
-2026-08-21 15:01:05,Nagapattinam,10.7656,79.8424,28.6,31.4,72,0.0,18.7,0.35,False,False,False,Normal
-2026-08-21 15:01:05,Namakkal,11.2189,78.1674,29.0,30.9,62,0.0,15.8,0.49,False,False,False,Normal
-2026-08-21 15:01:05,Nilgiris,11.4916,76.7337,16.1,17.1,89,0.0,3.3,-4.1,False,True,False,Cold Wave
-2026-08-21 15:01:05,Perambalur,11.2342,78.8821,29.7,31.6,65,0.0,21.9,0.74,False,False,False,Normal
-2026-08-21 15:01:05,Pudukkottai,10.3833,78.8,29.0,31.8,63,0.0,10.8,0.49,False,False,False,Normal
-2026-08-21 15:01:05,Ramanathapuram,9.3639,78.8395,31.0,33.7,58,0.0,14.3,1.21,False,False,False,Normal
-2026-08-21 15:01:05,Ranipet,12.9224,79.3331,25.4,30.2,91,0.1,7.8,-0.79,False,False,False,Normal
-2026-08-21 15:01:05,Salem,11.6643,78.146,28.4,31.3,63,0.0,9.0,0.28,False,False,False,Normal
-2026-08-21 15:01:05,Sivaganga,9.8433,78.4809,30.3,34.2,63,0.0,8.0,0.96,False,False,False,Normal
-2026-08-21 15:01:05,Tenkasi,8.9593,77.3153,25.3,26.1,81,0.0,27.6,-0.82,False,False,False,Normal
-2026-08-21 15:01:05,Thanjavur,10.787,79.1378,28.3,31.7,72,0.0,13.3,0.25,False,False,False,Normal
-2026-08-21 15:01:05,Theni,10.0104,77.4768,28.1,30.0,62,0.0,13.6,0.17,False,False,False,Normal
-2026-08-21 15:01:05,Thoothukudi,8.7642,78.1348,31.2,31.6,49,0.0,20.9,1.28,False,False,False,Normal
-2026-08-21 15:01:05,Tiruchirappalli,10.7905,78.7047,29.7,34.9,70,0.0,4.3,0.74,False,False,False,Normal
-2026-08-21 15:01:05,Tirunelveli,8.7139,77.7567,29.6,30.5,55,0.0,18.4,0.71,False,False,False,Normal
-2026-08-21 15:01:05,Tirupathur,12.4926,78.5683,25.3,29.2,80,0.0,5.5,-0.82,False,False,False,Normal
-2026-08-21 15:01:05,Tiruppur,11.1085,77.3411,25.6,27.0,78,0.0,22.0,-0.72,False,False,False,Normal
-2026-08-21 15:01:05,Tiruvallur,13.1432,79.9098,27.0,30.7,83,0.0,15.1,-0.22,False,False,False,Normal
-2026-08-21 15:01:05,Tiruvannamalai,12.2253,79.0747,26.5,33.0,93,0.1,2.3,-0.4,False,False,False,Normal
-2026-08-21 15:01:05,Tiruvarur,10.7711,79.6364,28.6,31.7,73,0.0,17.3,0.35,False,False,False,Normal
-2026-08-21 15:01:05,Vellore,12.9165,79.1325,24.3,29.4,95,0.4,4.3,-1.18,False,False,False,Normal
-2026-08-21 15:01:05,Viluppuram,11.9401,79.4861,25.4,30.9,94,2.2,5.4,-0.79,False,False,False,Normal
-2026-08-21 15:01:05,Virudhunagar,9.568,77.9624,31.9,33.4,44,0.0,9.3,1.53,True,False,False,Heat Alert
+city,latitude,longitude,Terrain_Zone,current_temp_c,feels_like_c,humidity_pct,precipitation_mm,wind_speed_kmh,baseline_mean_c,z_score,is_anomaly,Anomaly_Severity
+Ariyalur,11.1401,79.0786,South / Central TN,31.0,33.1,59,0.0,20.6,28.5,1.0,False,Normal
+Chengalpattu,12.6825,79.9822,North TN,30.2,34.2,67,0.0,11.6,28.5,0.68,False,Normal
+Chennai,13.0827,80.2707,North TN,29.8,34.8,72,0.0,7.7,28.5,0.52,False,Normal
+Coimbatore,11.0168,76.9558,Hilly / High Altitude,27.7,29.5,67,0.0,18.4,28.5,-0.32,False,Normal
+Cuddalore,11.748,79.7714,North TN,31.0,36.8,68,0.0,6.0,28.5,1.0,False,Normal
+Dharmapuri,12.1211,78.1582,North TN,30.0,30.0,52,0.0,23.4,28.5,0.6,False,Normal
+Dindigul,10.3673,77.9803,South / Central TN,32.3,36.7,50,0.0,1.6,28.5,1.52,True,Moderate Heat
+Erode,11.341,77.7172,South / Central TN,31.7,34.8,50,0.0,8.8,28.5,1.28,False,Normal
+Kallakurichi,11.7384,78.9639,North TN,31.1,35.4,61,0.0,9.8,28.5,1.04,False,Normal
+Kanchipuram,12.8342,79.7036,North TN,30.3,33.9,63,0.0,10.9,28.5,0.72,False,Normal
+Kanniyakumari,8.0883,77.5385,South / Central TN,29.3,30.2,65,0.0,27.9,28.5,0.32,False,Normal
+Karur,10.9601,78.0766,South / Central TN,32.1,32.6,50,0.0,27.0,28.5,1.44,False,Normal
+Krishnagiri,12.5266,78.2146,North TN,28.8,29.7,59,0.0,21.8,28.5,0.12,False,Normal
+Madurai,9.9252,78.1198,South / Central TN,33.0,35.8,47,0.0,11.7,28.5,1.8,True,Moderate Heat
+Mayiladuthurai,11.1018,79.6521,South / Central TN,30.5,33.9,65,0.0,15.9,28.5,0.8,False,Normal
+Nagapattinam,10.7656,79.8424,South / Central TN,31.5,34.3,59,0.0,15.2,28.5,1.2,False,Normal
+Namakkal,11.2189,78.1674,South / Central TN,31.1,34.7,57,0.0,9.6,28.5,1.04,False,Normal
+Nilgiris,11.4916,76.7337,Hilly / High Altitude,21.7,22.1,66,0.2,12.4,28.5,-2.72,True,Cold Wave
+Perambalur,11.2342,78.8821,South / Central TN,31.3,34.7,59,0.0,13.8,28.5,1.12,False,Normal
+Pudukkottai,10.3833,78.8,South / Central TN,31.3,36.7,63,0.0,4.3,28.5,1.12,False,Normal
+Ramanathapuram,9.3639,78.8395,South / Central TN,32.7,35.0,52,0.0,18.2,28.5,1.68,True,Moderate Heat
+Ranipet,12.9224,79.3331,North TN,30.3,32.9,61,0.0,14.6,28.5,0.72,False,Normal
+Salem,11.6643,78.146,South / Central TN,28.7,33.5,69,0.0,5.7,28.5,0.08,False,Normal
+Sivaganga,9.8433,78.4809,South / Central TN,31.9,35.3,55,0.0,12.1,28.5,1.36,False,Normal
+Tenkasi,8.9593,77.3153,South / Central TN,26.4,28.0,77,0.1,23.3,28.5,-0.84,False,Normal
+Thanjavur,10.787,79.1378,South / Central TN,31.0,34.4,62,0.0,17.3,28.5,1.0,False,Normal
+Theni,10.0104,77.4768,South / Central TN,31.2,34.8,52,0.1,5.6,28.5,1.08,False,Normal
+Thoothukudi,8.7642,78.1348,South / Central TN,34.1,36.9,45,0.0,13.7,28.5,2.24,True,Moderate Heat
+Tiruchirappalli,10.7905,78.7047,South / Central TN,32.2,33.9,54,0.0,23.2,28.5,1.48,False,Normal
+Tirunelveli,8.7139,77.7567,South / Central TN,33.2,35.4,48,0.0,16.2,28.5,1.88,True,Moderate Heat
+Tirupathur,12.4926,78.5683,North TN,29.5,30.9,59,0.0,19.5,28.5,0.4,False,Normal
+Tiruppur,11.1085,77.3411,South / Central TN,29.4,31.7,60,0.0,16.9,28.5,0.36,False,Normal
+Tiruvallur,13.1432,79.9098,North TN,30.5,34.0,63,0.0,12.6,28.5,0.8,False,Normal
+Tiruvannamalai,12.2253,79.0747,North TN,30.4,32.1,59,0.0,19.8,28.5,0.76,False,Normal
+Tiruvarur,10.7711,79.6364,South / Central TN,31.2,34.3,61,0.0,16.1,28.5,1.08,False,Normal
+Vellore,12.9165,79.1325,North TN,29.9,31.9,61,0.0,17.5,28.5,0.56,False,Normal
+Viluppuram,11.9401,79.4861,North TN,30.9,35.9,66,0.0,7.6,28.5,0.96,False,Normal
+Virudhunagar,9.568,77.9624,South / Central TN,33.6,37.5,45,0.0,4.6,28.5,2.04,True,Moderate Heat
