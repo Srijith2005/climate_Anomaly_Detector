@@ -1,39 +1,39 @@
 city,latitude,longitude,Terrain_Zone,current_temp_c,baseline_mean_c,z_score,is_anomaly,Anomaly_Severity,feels_like_c,humidity_pct,precipitation_mm,wind_speed_kmh
-Ariyalur,11.1401,79.0786,South / Central TN,36.4,28.5,3.16,True,Extreme Heat,39.3,40,0.0,10.0
-Chengalpattu,12.6825,79.9822,North TN,34.0,28.5,2.2,True,Moderate Heat,38.5,56,0.0,9.7
-Chennai,13.0827,80.2707,North TN,34.4,28.5,2.36,True,Moderate Heat,39.2,52,0.0,5.9
-Coimbatore,11.0168,76.9558,Hilly / High Altitude,29.4,28.5,0.36,False,Normal,31.6,66,0.0,22.8
-Cuddalore,11.748,79.7714,North TN,32.8,28.5,1.72,True,Moderate Heat,39.1,69,0.0,11.1
-Dharmapuri,12.1211,78.1582,North TN,34.9,28.5,2.56,True,Extreme Heat,35.3,37,0.0,16.7
-Dindigul,10.3673,77.9803,South / Central TN,35.3,28.5,2.72,True,Extreme Heat,37.7,39,0.0,6.7
-Erode,11.341,77.7172,South / Central TN,34.8,28.5,2.52,True,Extreme Heat,36.6,43,0.0,16.3
-Kallakurichi,11.7384,78.9639,North TN,34.2,28.5,2.28,True,Moderate Heat,38.8,50,0.1,2.0
-Kanchipuram,12.8342,79.7036,North TN,35.7,28.5,2.88,True,Extreme Heat,39.0,44,0.0,9.2
-Kanniyakumari,8.0883,77.5385,South / Central TN,30.6,28.5,0.84,False,Normal,31.4,64,0.1,31.7
-Karur,10.9601,78.0766,South / Central TN,35.1,28.5,2.64,True,Extreme Heat,35.3,42,0.0,27.9
-Krishnagiri,12.5266,78.2146,North TN,32.8,28.5,1.72,True,Moderate Heat,33.8,45,0.1,19.1
-Madurai,9.9252,78.1198,South / Central TN,36.7,28.5,3.28,True,Extreme Heat,39.0,36,0.0,8.6
-Mayiladuthurai,11.1018,79.6521,South / Central TN,35.4,28.5,2.76,True,Extreme Heat,37.2,43,0.0,17.7
-Nagapattinam,10.7656,79.8424,South / Central TN,34.3,28.5,2.32,True,Moderate Heat,37.5,52,0.1,15.8
-Namakkal,11.2189,78.1674,South / Central TN,35.2,28.5,2.68,True,Extreme Heat,39.1,42,0.0,2.4
-Nilgiris,11.4916,76.7337,Hilly / High Altitude,23.3,28.5,-2.08,True,Cold Wave,22.5,57,0.0,16.5
-Perambalur,11.2342,78.8821,South / Central TN,36.5,28.5,3.2,True,Extreme Heat,40.2,41,0.0,5.9
-Pudukkottai,10.3833,78.8,South / Central TN,35.0,28.5,2.6,True,Extreme Heat,38.6,48,0.0,8.9
-Ramanathapuram,9.3639,78.8395,South / Central TN,33.7,28.5,2.08,True,Moderate Heat,36.9,53,0.0,15.2
-Ranipet,12.9224,79.3331,North TN,35.9,28.5,2.96,True,Extreme Heat,38.2,40,0.0,11.8
-Salem,11.6643,78.146,South / Central TN,34.1,28.5,2.24,True,Moderate Heat,38.3,47,0.0,1.8
-Sivaganga,9.8433,78.4809,South / Central TN,33.9,28.5,2.16,True,Moderate Heat,38.0,51,0.1,7.1
-Tenkasi,8.9593,77.3153,South / Central TN,27.0,28.5,-0.6,False,Normal,29.2,80,0.1,23.4
-Thanjavur,10.787,79.1378,South / Central TN,33.9,28.5,2.16,True,Moderate Heat,37.6,54,0.1,12.5
-Theni,10.0104,77.4768,South / Central TN,33.9,28.5,2.16,True,Moderate Heat,36.9,46,0.0,8.1
-Thoothukudi,8.7642,78.1348,South / Central TN,36.2,28.5,3.08,True,Extreme Heat,36.3,38,0.0,23.1
-Tiruchirappalli,10.7905,78.7047,South / Central TN,37.2,28.5,3.48,True,Extreme Heat,38.2,37,0.0,22.7
-Tirunelveli,8.7139,77.7567,South / Central TN,35.0,28.5,2.6,True,Extreme Heat,36.2,44,0.1,20.6
-Tirupathur,12.4926,78.5683,North TN,33.9,28.5,2.16,True,Moderate Heat,35.3,42,0.0,15.1
-Tiruppur,11.1085,77.3411,South / Central TN,31.6,28.5,1.24,False,Normal,33.1,58,0.0,26.4
-Tiruvallur,13.1432,79.9098,North TN,36.6,28.5,3.24,True,Extreme Heat,38.8,39,0.0,13.0
-Tiruvannamalai,12.2253,79.0747,North TN,35.7,28.5,2.88,True,Extreme Heat,37.2,39,0.0,16.0
-Tiruvarur,10.7711,79.6364,South / Central TN,33.2,28.5,1.88,True,Moderate Heat,36.8,59,0.0,18.3
-Vellore,12.9165,79.1325,North TN,37.2,28.5,3.48,True,Extreme Heat,38.1,32,0.0,15.1
-Viluppuram,11.9401,79.4861,North TN,33.7,28.5,2.08,True,Moderate Heat,37.9,57,0.1,12.0
-Virudhunagar,9.568,77.9624,South / Central TN,36.2,28.5,3.08,True,Extreme Heat,38.0,39,0.1,13.6
+Ariyalur,11.1401,79.0786,South / Central TN,29.6,28.5,0.44,False,Normal,32.0,67,0.2,20.4
+Chengalpattu,12.6825,79.9822,North TN,30.3,28.5,0.72,False,Normal,34.7,74,0.0,16.9
+Chennai,13.0827,80.2707,North TN,31.1,28.5,1.04,False,Normal,35.3,65,0.1,10.9
+Coimbatore,11.0168,76.9558,Hilly / High Altitude,27.0,28.5,-0.6,False,Normal,28.8,73,0.0,20.3
+Cuddalore,11.748,79.7714,North TN,30.1,28.5,0.64,False,Normal,36.2,84,0.0,14.2
+Dharmapuri,12.1211,78.1582,North TN,29.1,28.5,0.24,False,Normal,29.5,57,0.3,23.3
+Dindigul,10.3673,77.9803,South / Central TN,34.1,28.5,2.24,True,Moderate Heat,34.7,40,0.0,16.6
+Erode,11.341,77.7172,South / Central TN,32.5,28.5,1.6,True,Moderate Heat,34.5,51,0.3,17.0
+Kallakurichi,11.7384,78.9639,North TN,30.9,28.5,0.96,False,Normal,36.6,71,0.0,6.8
+Kanchipuram,12.8342,79.7036,North TN,32.5,28.5,1.6,True,Moderate Heat,37.1,59,0.0,8.0
+Kanniyakumari,8.0883,77.5385,South / Central TN,28.2,28.5,-0.12,False,Normal,29.7,76,0.0,29.3
+Karur,10.9601,78.0766,South / Central TN,32.2,28.5,1.48,False,Normal,32.0,50,0.0,29.4
+Krishnagiri,12.5266,78.2146,North TN,29.1,28.5,0.24,False,Normal,30.5,60,0.5,18.7
+Madurai,9.9252,78.1198,South / Central TN,34.9,28.5,2.56,True,Extreme Heat,36.0,40,0.3,16.3
+Mayiladuthurai,11.1018,79.6521,South / Central TN,32.2,28.5,1.48,False,Normal,35.4,62,0.0,19.8
+Nagapattinam,10.7656,79.8424,South / Central TN,32.6,28.5,1.64,True,Moderate Heat,34.9,56,0.0,19.3
+Namakkal,11.2189,78.1674,South / Central TN,33.6,28.5,2.04,True,Moderate Heat,36.0,47,0.0,12.1
+Nilgiris,11.4916,76.7337,Hilly / High Altitude,20.4,28.5,-3.24,True,Cold Wave,20.0,69,0.0,13.0
+Perambalur,11.2342,78.8821,South / Central TN,32.3,28.5,1.52,True,Moderate Heat,36.0,59,0.1,12.4
+Pudukkottai,10.3833,78.8,South / Central TN,33.9,28.5,2.16,True,Moderate Heat,37.9,48,0.1,4.5
+Ramanathapuram,9.3639,78.8395,South / Central TN,30.7,28.5,0.88,False,Normal,34.2,69,0.0,19.1
+Ranipet,12.9224,79.3331,North TN,33.4,28.5,1.96,True,Moderate Heat,38.6,55,0.0,1.7
+Salem,11.6643,78.146,South / Central TN,31.1,28.5,1.04,False,Normal,34.6,60,0.1,11.1
+Sivaganga,9.8433,78.4809,South / Central TN,29.7,28.5,0.48,False,Normal,34.4,78,0.4,16.4
+Tenkasi,8.9593,77.3153,South / Central TN,26.3,28.5,-0.88,False,Normal,28.0,81,0.0,24.6
+Thanjavur,10.787,79.1378,South / Central TN,30.2,28.5,0.68,False,Normal,35.1,78,0.3,16.8
+Theni,10.0104,77.4768,South / Central TN,32.4,28.5,1.56,True,Moderate Heat,34.2,48,0.0,13.0
+Thoothukudi,8.7642,78.1348,South / Central TN,34.6,28.5,2.44,True,Moderate Heat,33.4,42,0.0,33.7
+Tiruchirappalli,10.7905,78.7047,South / Central TN,35.1,28.5,2.64,True,Extreme Heat,35.2,38,0.0,21.2
+Tirunelveli,8.7139,77.7567,South / Central TN,33.2,28.5,1.88,True,Moderate Heat,33.9,47,0.0,23.0
+Tirupathur,12.4926,78.5683,North TN,32.5,28.5,1.6,True,Moderate Heat,33.5,45,0.0,15.9
+Tiruppur,11.1085,77.3411,South / Central TN,28.9,28.5,0.16,False,Normal,30.0,68,0.0,26.7
+Tiruvallur,13.1432,79.9098,North TN,32.9,28.5,1.76,True,Moderate Heat,37.0,58,0.0,11.7
+Tiruvannamalai,12.2253,79.0747,North TN,31.5,28.5,1.2,False,Normal,36.2,63,0.2,8.2
+Tiruvarur,10.7711,79.6364,South / Central TN,31.0,28.5,1.0,False,Normal,34.0,66,0.0,20.1
+Vellore,12.9165,79.1325,North TN,35.8,28.5,2.92,True,Extreme Heat,35.2,31,0.0,18.0
+Viluppuram,11.9401,79.4861,North TN,32.2,28.5,1.48,False,Normal,35.8,62,0.0,16.4
+Virudhunagar,9.568,77.9624,South / Central TN,36.1,28.5,3.04,True,Extreme Heat,36.2,36,0.1,20.6
